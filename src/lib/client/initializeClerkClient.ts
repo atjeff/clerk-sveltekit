@@ -1,5 +1,5 @@
-import type Clerk from '@clerk/clerk-js'
-import type ClerkHeadless from '@clerk/clerk-js/headless'
+import type { Clerk } from '@clerk/clerk-js'
+import type { Clerk as ClerkHeadless } from '@clerk/clerk-js/headless'
 import type { ClerkOptions } from '@clerk/types'
 import type ClerkStore from './store.js'
 
@@ -11,7 +11,7 @@ export const DEFAULT_OPTIONS: ClerkOptions = {
 }
 
 export default async function initializeClerkClient(
-	clerk: typeof ClerkStore,
+	clerkStore: typeof ClerkStore,
 	clerkClass: typeof Clerk | typeof ClerkHeadless,
 	key: string,
 	options: ClerkOptions = DEFAULT_OPTIONS
@@ -28,9 +28,9 @@ export default async function initializeClerkClient(
 		}
 	})
 
-	clerk.set(instance)
+	clerkStore.set(instance)
 
-	clerk.subscribe((clerkInstance) => {
+	clerkStore.subscribe((clerkInstance) => {
 		if (clerkInstance) window.Clerk = clerkInstance
 	})
 }
