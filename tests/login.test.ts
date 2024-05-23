@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
 const EMAIL = 'tester+clerk_test@example.com'
 const CODE = '424242'
@@ -37,7 +37,7 @@ test('User can log in', async ({ context, page }) => {
 
 	// Submit the email.
 	await page.waitForURL(URL_SIGN_IN)
-	const email = page.locator('input[name="identifier"][type="email"]')
+	const email = page.locator('input[name="identifier"][type="text"]')
 	await email.fill(EMAIL)
 	await page.keyboard.press('Enter')
 	try {
